@@ -23,7 +23,9 @@ void desenhaGif(){
     int desenhandoEtapa;
 
     for(etapa=0;etapa<10;etapa++){
-        limpaTela();
+        do{
+            desenhandoEtapa=1;
+            limpaTela();
 
             printf("Imagem %d: \n", etapa+1);
             mostraFrame(etapa);
@@ -41,9 +43,10 @@ void desenhaGif(){
 
             printf("\nAssim que ficou a tela: %d\n", etapa+1);
             mostraFrame(etapa);
+        } while(desenhandoEtapa);
 
-            printf("\n\n%s\n", etapa==9?"Terminado, voltando ao menu...":"Indo para proxima etapa...");
-            system("pause");
+        printf("\n\n%s\n", etapa==9?"Terminado, voltando ao menu...":"Indo para proxima etapa...");
+        system("pause");
         
     }
 
@@ -77,9 +80,11 @@ void mostraFrame(int etapa) {
     printf("Y");
 
 }
+
 void examineGif(){
 
 }
+
 void deleteGif(){
     for(int etapa = 0;etapa<10;etapa++){
         for(int y = 0;y<10;y++){

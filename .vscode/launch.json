@@ -4,6 +4,7 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "type": "java",
             "name": "JAVADebug (Launch)",
@@ -18,13 +19,20 @@
             "name": "(Windows) Launch",
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "exe/${fileBasenameNoExtension}.exe",
+            "program": "${fileBasenameNoExtension}.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
-            "externalConsole": true,
-            "preLaunchTask": "Build C"
+            "externalConsole": false,
+            "preLaunchTask": "Build C",
+            "logging": {
+                "programOutput": true,
+                "exceptions": true,
+                "engineLogging": true,
+                "moduleLoad": true,
+                "trace": true,
+                "traceResponse": true,}
         }
     ]
 }

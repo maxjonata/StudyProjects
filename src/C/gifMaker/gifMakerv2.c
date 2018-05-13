@@ -20,30 +20,29 @@ void desenhaGif(){
 
     int etapa,x,y;
     char icon;
-    int desenhandoEtapa;
 
     for(etapa=0;etapa<10;etapa++){
         limpaTela();
 
-            printf("Imagem %d: \n", etapa+1);
-            mostraFrame(etapa);
+        printf("Imagem %d: \n", etapa+1);
+        mostraFrame(etapa);
 
-            printf("\nSinal ASCII(Caracteres padrões de teclados) que gostaria de colocar como icone: ");
-            scanf(" %c", &icon);
+        printf("\nSinal ASCII(Caracteres padrões de teclados) que gostaria de colocar como icone: ");
+        scanf(" %c", &icon);
 
-            printf("\nColuna(eixo x da esquerda para direita) na qual gostaria de colocar este icone: ");
-            scanf(" %d", &x);
+        printf("\nColuna(eixo x da esquerda para direita) na qual gostaria de colocar este icone: ");
+        scanf(" %d", &x);
 
-            printf("\nLinha(eixo y de cima pra baixo) na qual gostaria de colocar este icone: ");
-            scanf(" %d", &y);
+        printf("\nLinha(eixo y de cima pra baixo) na qual gostaria de colocar este icone: ");
+        scanf(" %d", &y);
 
-            gif[etapa][y][x] = icon;
+        gif[etapa][y][x] = icon;
 
-            printf("\nAssim que ficou a tela: %d\n", etapa+1);
-            mostraFrame(etapa);
+        printf("\nAssim que ficou a tela: %d\n", etapa+1);
+        mostraFrame(etapa);
 
-            printf("\n\n%s\n", etapa==9?"Terminado, voltando ao menu...":"Indo para proxima etapa...");
-            system("pause");
+        printf("\n\n%s\n", etapa==9?"Terminado, voltando ao menu...":"Indo para proxima etapa...");
+        system("pause");
         
     }
 
