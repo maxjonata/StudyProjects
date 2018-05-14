@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <locale.h>
+#include <ctype.h>
 #include "gifMaker.h"
 
 //   gif[etapa][y][x]
@@ -20,11 +21,11 @@ void desenhaGif(){
 
     int etapa,x,y;
     char icon;
-    int desenhandoEtapa;
+    char desenhandoEtapa;
 
     for(etapa=0;etapa<10;etapa++){
         do{
-            desenhandoEtapa=1;
+            desenhandoEtapa='S';
             limpaTela();
 
             printf("Imagem %d: \n", etapa+1);
@@ -32,18 +33,27 @@ void desenhaGif(){
 
             printf("\nSinal ASCII(Caracteres padrões de teclados) que gostaria de colocar como icone: ");
             scanf(" %c", &icon);
-
-            printf("\nColuna(eixo x da esquerda para direita) na qual gostaria de colocar este icone: ");
+            printf("Coluna(eixo x da esquerda para direita) na qual gostaria de colocar este icone: ");
             scanf(" %d", &x);
-
-            printf("\nLinha(eixo y de cima pra baixo) na qual gostaria de colocar este icone: ");
+            printf("Linha(eixo y de cima pra baixo) na qual gostaria de colocar este icone: ");
             scanf(" %d", &y);
 
             gif[etapa][y][x] = icon;
 
-            printf("\nAssim que ficou a tela: %d\n", etapa+1);
-            mostraFrame(etapa);
-        } while(desenhandoEtapa);
+            do{
+
+                system("cls");
+
+                printf("\nAssim que ficou a tela: %d\n", etapa+1);
+                mostraFrame(etapa);
+
+                printf("\nContinuar pintando? [S/N]\n> ");
+                scanf(" %c", &desenhandoEtapa);
+                toupper(desenhandoEtapa);
+
+            } while(desenhandoEtapa!='S' && desenhandoEtapa!='N');
+
+        } while(desenhandoEtapa=='S');
 
         printf("\n\n%s\n", etapa==9?"Terminado, voltando ao menu...":"Indo para proxima etapa...");
         system("pause");
