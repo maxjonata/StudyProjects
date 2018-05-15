@@ -91,10 +91,6 @@ void mostraFrame(int etapa) {
 
 }
 
-void examineGif(){
-
-}
-
 void deleteGif(){
     for(int etapa = 0;etapa<10;etapa++){
         for(int y = 0;y<10;y++){
