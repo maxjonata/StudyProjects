@@ -24,12 +24,20 @@ void desenhaGif(){
     char desenhandoEtapa;
 
     for(etapa=0;etapa<10;etapa++){
+
         do{
+
             desenhandoEtapa='S';
             limpaTela();
 
             printf("Imagem %d: \n", etapa+1);
             mostraFrame(etapa);
+
+            menuDesenha();
+
+
+
+
 
             printf("\nSinal ASCII(Caracteres padrões de teclados) que gostaria de colocar como icone: ");
             scanf(" %c", &icon);
@@ -108,16 +116,49 @@ void limpaTela() {
     system("cls");
 }
 
-void funcGif(int etapa, int x, int y, char icon) {
-    x-=1;
-    y-=1;
+void menuDesenha() {
 
-    gif[etapa][y][x] = icon;
+    short wrongOption = 1;
+    short opcao;
+
+    do{
+
+        limpaTela();
+        printf("        _______________________________         \n");
+        printf("        |------>   BEM VINDO  <-------|         \n");
+        printf("        |-----------------------------|         \n");
+        printf("        |                             |         \n");
+        printf("        |  1 - Colocar ícone          |         \n");
+        printf("        |  2 - Remover ícone          |         \n");
+        printf("        |  3 - Próxima Etapa do Gif   |         \n");
+        printf("        |                             |         \n");
+        printf("        |      0 - Terminar Gif       |         \n");
+        printf("        |                             |         \n");
+        printf("        |_____________________________|         \n");
+        printf("         \\_ Escolha: ");
+
+        scanf(" %hi", &opcao);
+
+        if(opcao<0 && opcao>3){
+
+            wrongOption = 1;
+            printf("\n Opção inválida, escolha uma opção entre as do menu.\n\n");
+            system("pause");
+            
+        } else {wrongOption = 0;}
+
+    } while(wrongOption);
+
+    return(opcao);
 
 }
 
-void menu() {
+int menu() {
 
+    short wrongOption = 1;
+    short opcao;
+
+    limpaTela();
     printf("        _______________________________         \n");
     printf("        |------>   BEM VINDO  <-------|         \n");
     printf("        |-----------------------------|         \n");
@@ -132,20 +173,30 @@ void menu() {
     printf("        |_____________________________|         \n");
     printf("         \\_ Escolha: ");
 
+    scanf(" %hi", &opcao);
+
+        if(opcao<0 && opcao>3){
+
+            wrongOption = 1;
+            printf("\n Opção inválida, escolha uma opção entre as do menu.\n\n");
+            system("pause");
+
+        } else {wrongOption = 0;}
+
+    } while(wrongOption);
+
+    return(opcao);
+
 }
 
 int main() {
-    setlocale(LC_ALL,"");
 
     int opcao;
     int wrongOption;
 
-    do{
+    setlocale(LC_ALL,"");
 
-        limpaTela();
-
-        menu();
-        scanf(" %d", &opcao);
+    opcao = menu();
 
     switch ( opcao ) {
 
@@ -164,17 +215,11 @@ int main() {
         case 3 :
             examineGif();
             break;
- 
+
         case 4 :
             deleteGif();
+        break;
 
-        }
-            if(opcao<0 && opcao>4){
-            wrongOption = 1;
-            printf("\n Opção inválida, escolha uma opção entre as do menu.\n\n");
-            system("pause");
-            }
-
-    } while(wrongOption);
+    }
     
 }

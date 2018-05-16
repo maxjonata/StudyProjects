@@ -5,8 +5,7 @@ void limpaTela();
 void desenhaGif();
 void executeGif();
 void deleteGif();
-void funcGif(int etapa, int x, int y, char icon);
-void menu();
+int menu();
 void mostraFrame(int etapa);
 
 #endif
