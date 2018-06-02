@@ -17,7 +17,7 @@ void operacoesDecorrentes() {
 /*
     if( (emprestimo1 + emprestimo2 + emprestimo3 + emprestimo4 + emprestimo5) > 0 ){
 
-        
+
 
         contagemEmprestimo += 1;
         if(contagemEmprestimo == 5){
@@ -75,7 +75,7 @@ void saque() {
     if(permissaoSaqueEmprestimo == 0){
         system("cls");
         printf("Saque bloqueado.");
-        scanf("");
+        scanf(" %*c");
 
     } else {
         operacoesDecorrentes();
@@ -114,7 +114,7 @@ void deposito() {
     } while(deposito<0);
     saldo+=deposito;
 
-    printf("\nDeposito de %.2f acrescentado a conta com sucesso.", deposito);
+    printf("\n\nDeposito de %.2f acrescentado a conta com sucesso.", deposito);
     printf("\nSaldo atual: %.2f", saldo);
 
     operacoesDecorrentes();
@@ -137,7 +137,7 @@ float emprestimo() {/*
             scanf(" %f", emprestimo);
 
         } while( (emprestimo>=0) && ( (emprestimo1 + emprestimo2 + emprestimo3 + emprestimo4 + emprestimo5 + emprestimo) <= limiteEmprestimo) );
-        
+
         operacoesDecorrentes();
 
         if       ( emprestimo1 == 0 ){
@@ -174,7 +174,7 @@ void saida() {
     system("cls");
     printf("Saindo...");
     printf("\nSaldo final: %.2f", saldo);
-    scanf("");
+    scanf(" %*c");
     exit(0);
 }
 
@@ -182,13 +182,14 @@ int main() {
     char opcao;
     int rodando = 1;
 
-    while(rodando){
-        do {
-            system("cls");
-            printf("Digite o saldo inicial de sua conta (nao pode ser negativo)\n>");
-            scanf(" %f", &saldo);
+    do {
+        system("cls");
+        printf("Digite o saldo inicial de sua conta (nao pode ser negativo)\n>");
+        scanf(" %f", &saldo);
 
-        } while(saldo<0);
+    } while(saldo<0);
+
+    while(rodando){
 
         do {
             system("cls");
@@ -197,7 +198,7 @@ int main() {
             printf("\n(S)aque, (D)eposito,  (E)mprestimo,  S(a)ida");
             printf("\nPara escolher, digite a letra associada a opcao: ");
             scanf(" %c", &opcao);
-            toupper(opcao);
+            opcao = toupper(opcao);
 
         } while((opcao != 'S') && (opcao != 'D') && (opcao != 'E') && (opcao != 'A'));
 
