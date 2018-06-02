@@ -2,5 +2,30 @@
     "files.associations": {
         "stdio.h": "c",
         "stdlib.h": "c"
-    }
+    },
+    "bracketPairColorizer.showBracketsInGutter": true,
+    "bracketPairColorizer.showBracketsInRuler": true,
+    "bracketPairColorizer.timeOut": 0,
+    "bracketPairColorizer.highlightActiveScope": false,
+    "bracketPairColorizer.consecutivePairColors": [
+        "()",
+        "[]",
+        "{}",
+        [
+            "</",
+            ">"
+        ],
+        [
+            "<",
+            "/>"
+        ],
+        "<>",
+        [
+            "Gold",
+            "#8E53F2",
+            "#87FEFA"
+        ],
+        "Red"
+    ],
+    "C_Cpp.errorSquiggles": "Disabled"
 }

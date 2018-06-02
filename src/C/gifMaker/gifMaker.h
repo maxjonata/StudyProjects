@@ -5,8 +5,9 @@ void limpaTela();
 void showGif();
 void desenhaGif();
 void deleteGif();
-int menuDesenha();
-int menu();
+void menuDesenha();
+void menuPrincipal();
+short menu(char menu[15]);
 void mostraFrame(int etapa);
 
 #endif
