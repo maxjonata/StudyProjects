@@ -14,50 +14,50 @@ int permissaoSaqueEmprestimo = 1,contagemEmprestimo = 0;
 void operacoesDecorrentes() {
     if(saldo<0){saldo -= (saldo * (-1)) * 0.01;}
 
-/*
-    if( (emprestimo1 + emprestimo2 + emprestimo3 + emprestimo4 + emprestimo5) > 0 ){
+    /*
+        if( (emprestimo1 + emprestimo2 + emprestimo3 + emprestimo4 + emprestimo5) > 0 ){
 
 
 
-        contagemEmprestimo += 1;
-        if(contagemEmprestimo == 5){
-            saldo -= parcelaDevendo1+parcelaDevendo2+parcelaDevendo3+parcelaDevendo4+parcelaDevendo5;
-            emprestimoDevendo1 -= parcelaDevendo1;
-            emprestimoDevendo2 -= parcelaDevendo2;
-            emprestimoDevendo3 -= parcelaDevendo3;
-            emprestimoDevendo4 -= parcelaDevendo4;
-            emprestimoDevendo5 -= parcelaDevendo5;
+            contagemEmprestimo += 1;
+            if(contagemEmprestimo == 5){
+                saldo -= parcelaDevendo1+parcelaDevendo2+parcelaDevendo3+parcelaDevendo4+parcelaDevendo5;
+                emprestimoDevendo1 -= parcelaDevendo1;
+                emprestimoDevendo2 -= parcelaDevendo2;
+                emprestimoDevendo3 -= parcelaDevendo3;
+                emprestimoDevendo4 -= parcelaDevendo4;
+                emprestimoDevendo5 -= parcelaDevendo5;
 
+            }
+
+            //tratamento de empréstimos seguidos para além do quinto, rearranjo da tabela entre si
+            if(emprestimo1 == 0){
+                emprestimo1 = emprestimo2;
+                emprestimo2 = emprestimo3;
+                emprestimo3 = emprestimo4;
+                emprestimo4 = emprestimo5;
+                emprestimo5 = 0;
+
+                emprestimo1pagos = emprestimo2pagos;
+                emprestimo2pagos = emprestimo3pagos;
+                emprestimo3pagos = emprestimo4pagos;
+                emprestimo4pagos = emprestimo5pagos;
+                emprestimo5pagos = 0;
+
+                emprestimoDevendo1 = emprestimoDevendo2;
+                emprestimoDevendo2 = emprestimoDevendo3;
+                emprestimoDevendo3 = emprestimoDevendo4;
+                emprestimoDevendo4 = emprestimoDevendo5;
+                emprestimoDevendo5 = 0;
+
+                parcelaDevendo1 = parcelaDevendo2;
+                parcelaDevendo2 = parcelaDevendo3;
+                parcelaDevendo3 = parcelaDevendo4;
+                parcelaDevendo4 = parcelaDevendo5;
+                parcelaDevendo5 = 0;
+            }
         }
-
-        //tratamento de empréstimos seguidos para além do quinto, rearranjo da tabela entre si
-        if(emprestimo1 == 0){
-            emprestimo1 = emprestimo2;
-            emprestimo2 = emprestimo3;
-            emprestimo3 = emprestimo4;
-            emprestimo4 = emprestimo5;
-            emprestimo5 = 0;
-
-            emprestimo1pagos = emprestimo2pagos;
-            emprestimo2pagos = emprestimo3pagos;
-            emprestimo3pagos = emprestimo4pagos;
-            emprestimo4pagos = emprestimo5pagos;
-            emprestimo5pagos = 0;
-
-            emprestimoDevendo1 = emprestimoDevendo2;
-            emprestimoDevendo2 = emprestimoDevendo3;
-            emprestimoDevendo3 = emprestimoDevendo4;
-            emprestimoDevendo4 = emprestimoDevendo5;
-            emprestimoDevendo5 = 0;
-
-            parcelaDevendo1 = parcelaDevendo2;
-            parcelaDevendo2 = parcelaDevendo3;
-            parcelaDevendo3 = parcelaDevendo4;
-            parcelaDevendo4 = parcelaDevendo5;
-            parcelaDevendo5 = 0;
-        }
-    }
-*/
+    */
 
     //Alternâncias na permissão de saque e empréstimos
     if     (saldo<(-1000) && permissaoSaqueEmprestimo == 1){
@@ -67,10 +67,11 @@ void operacoesDecorrentes() {
         permissaoSaqueEmprestimo = 1;
 
     }
+
 }
 
 void saque() {
-    float saque = -1,limiteEspecial = -1000;
+    float saque = (-1),limiteEspecial = (-1000);
 
     if(permissaoSaqueEmprestimo == 0){
         system("cls");
@@ -88,19 +89,24 @@ void saque() {
 
         } while(saque<0);
 
-        if((saldo-saque)<limiteEspecial){
-            printf("Saque nao pode ser realizado pois ultrapassa limite especial.\n Saque e Emprestimo serao bloqueados ate que conta volte ao positivo.");
+        if((saldo-saque)<=limiteEspecial){
+            printf("\n\nSaque nao pode ser realizado pois ultrapassa limite especial.\nSaque e Emprestimo serao bloqueados ate que conta volte ao positivo.");
+            scanf(" %*c");
             permissaoSaqueEmprestimo = 0;
             operacoesDecorrentes();
             return;
 
-        }
-        saldo-=saque;
+        } else {
+            
+            saldo-=saque;
 
-        printf("\n\nSaque de %.2f extraido da conta com sucesso.", saque);
-        printf("\nSaldo atual: %.2f", saldo);
+            printf("\n\nSaque de %.2f extraido da conta com sucesso.", saque);
+            printf("\nSaldo atual: %.2f", saldo);
+
+        }
 
     }
+
 }
 
 void deposito() {

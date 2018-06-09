@@ -6,8 +6,7 @@ int main() {
 
     float newCar,fabCost,distPercent,taxPercent;
 
-    //Entradas
-
+    //Entrada
     printf("Digite o custo de fábrica do carro: ");
     scanf("%f", &fabCost);
     printf("\nDigite a porcentagem do distribuidor: ");
