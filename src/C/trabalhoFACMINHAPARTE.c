@@ -155,69 +155,9 @@ void saida() {
     exit(0);
 }
 
-
-void menu (){
-    char opcao;
-	int rodando =1;
-	if(permissaoSaqueEmprestimo == 1){
-		 
-		while(rodando){
-            do {
-                system("cls");
-                printf("Saldo = %.2f", saldo);
-                printf("\nOpcoes:");
-                printf("\n[S]Saque\n");
-                printf("[D]Deposito\n");
-                printf("[E]Emprestimo\n");
-                printf("[A]Saida\n\n");
-                fflush(stdin);
-                printf("\nEscolha uma opcao (digite a letra associada a opcao) : ");
-                scanf(" %c", &opcao);
-                opcao = toupper(opcao);
-                
-            } while((opcao != 'S') && (opcao != 'D') && (opcao != 'E') && (opcao != 'A'));
-
-            switch (opcao) {
-                case 'S':
-                    saque();
-                    break;
-                case 'D':
-                    deposito();
-                    break;
-                case 'E':
-                    emprestimo();
-                    break;
-                case 'A':
-                    saida();
-            }
-
-	    }
-  
-    } else if (permissaoSaqueEmprestimo == 0){
-    	do{
-    		system("cls");
-            printf("Saldo = %.2f", saldo);
-            printf("\nOpcoes dispon�veis at� o saldo volta a ser positivo:\n");
-            printf("[D]Deposito\n");
-            printf("[A]Saida\n");
-            scanf("%c" , &opcao);
-            opcao = toupper(opcao);
-  		
-		}while((opcao != 'D') && (opcao != 'A'));
-		
-		switch (opcao){
-			case 'D' :
-				deposito();
-				break;
-		    case 'A' :
-		    	saida();
-		    	break;
-		}
-   }
-}
-
-
 int main() {
+    char opcao;
+    int rodando = 1;
 
     do {
         system("cls");
@@ -226,7 +166,32 @@ int main() {
 
     } while(saldo<0);
 
-    menu();
-  
+    while(rodando){
+
+        do {
+            system("cls");
+            printf("Saldo = %.2f", saldo);
+            printf("\nOpcoes:");
+            printf("\n(S)aque, (D)eposito,  (E)mprestimo,  S(a)ida");
+            printf("\nPara escolher, digite a letra associada a opcao: ");
+            scanf(" %c", &opcao);
+            opcao = toupper(opcao);
+
+        } while((opcao != 'S') && (opcao != 'D') && (opcao != 'E') && (opcao != 'A'));
+
+        switch (opcao) {
+            case 'S':
+                saque();
+                break;
+            case 'D':
+                deposito();
+                break;
+            case 'E':
+                emprestimo();
+                break;
+            case 'A':
+                saida();
+                break;
+        }
+    }
 }
-   
