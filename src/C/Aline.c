@@ -12,13 +12,13 @@ int main() {
                        //  [20] para a quantidade de letras.
 
     if (qn < 5 || qn > 7) {
-        printf("ERRO!!"); 
+        printf("ERRO!!");
     }
     else {
         for (j = 0; j < qn; j++) {
-            printf("Entre com o nome: \n"); 
-            fflush(stdin); 
-            gets(nome[j]); 
+            printf("Entre com o nome: \n");
+            fflush(stdin);
+            gets(nome[j]);
         }
 
         for (j = 0; j < qn; j++) {
