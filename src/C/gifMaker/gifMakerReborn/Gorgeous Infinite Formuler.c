@@ -2,6 +2,13 @@
 #include <stdlib.h>
 #include <time.h>
 
+void delay(unsigned int mseconds);
+void limpaGif(int z, int y, int x, char array[z][y][x]);
+void menuPrincipal();
+void abertura();
+int criaGif(const int z, const int y, const int x, char array[z][y][x]);
+void executaGif(int z, int y, int x, char array[z][y][x], int zUsados);
+
 void delay(unsigned int mseconds)
 {
     clock_t goal = mseconds + clock();
@@ -471,6 +478,9 @@ int criaGif(const int z, const int y, const int x, char array[z][y][x])
                     
                     case 'D': case 'd':
                         array[iZ][ypen][xpen] = 'K';
+                        break;
+                    case 'E': case 'e':
+                        executaGif(z, y, x, array, z);
                         break;
                 }
             }
