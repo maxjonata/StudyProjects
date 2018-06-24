@@ -507,6 +507,7 @@ void executaGif(int z, int y, int x, char array[z][y][x], int zUsados)
             }
             printf("\n");
         }
+        delay(250);
     }
 }
 
