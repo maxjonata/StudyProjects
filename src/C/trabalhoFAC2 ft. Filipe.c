@@ -46,7 +46,7 @@ int testaN(int v[], int *quantidade, int numero) //testa quantidade de ocorrenci
 int insereNumero( int v[], int *quantidade, int numero ) // 1) Inserção de um novo número;
 {
     int quantidadePermitida = testaN( v, quantidade, numero);
-    if(quantidadePermitida > 0)
+    if(quantidadePermitida > 0 && *quantidade<(int)cap)
     {
         v[*quantidade] = numero;
         (*quantidade)++;
