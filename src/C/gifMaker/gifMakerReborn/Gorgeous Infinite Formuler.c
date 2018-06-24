@@ -519,7 +519,7 @@ int main()
     char gif[z][y][x];
     limpaGif(z, y, x, gif);
 
-    //abertura();
+    abertura();
 
     do
     {
