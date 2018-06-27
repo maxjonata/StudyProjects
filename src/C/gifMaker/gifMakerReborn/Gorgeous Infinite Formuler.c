@@ -263,10 +263,11 @@ int criaGif(const int z, const int y, const int x, char array[z][y][x])
         printf("|                                       |\n");
         
         printf("|");
-        for( i = 1 ; i < (colunas - (x)) / 2 ; i++) //Espaço da esquerda entre a imagem e a interface
+        for( i = 5 ; i < (colunas - (x)) / 2 ; i++) //Espaço da esquerda entre a imagem e a interface
         {
             printf(" ");
         }
+        printf("Y   ");
         for( --i ; i < (colunas - (colunas - (x)) / 2) - 1  ; i++) //Espaço da esquerda entre a imagem e a interface
         {
             printf("_");
@@ -279,11 +280,11 @@ int criaGif(const int z, const int y, const int x, char array[z][y][x])
         for( iY = 0 ; iY < y ; iY++ ) //Linhas
         {
             printf("|");
-            for( i = 6 ; i < (colunas - (x)) / 2 ; i++) //Espaço da esquerda entre a imagem e a interface
+            for( i = 5 ; i < (colunas - (x)) / 2 ; i++) //Espaço da esquerda entre a imagem e a interface
             {
                 printf(" ");
             }
-            printf("%02d > ", iY+1);
+            printf("%02d >", iY);
             for( iX = 0 ; iX < x ; iX++ ) //Colunas
             {
                 printf("%c", array[iZ][iY][iX]);
@@ -327,7 +328,8 @@ int criaGif(const int z, const int y, const int x, char array[z][y][x])
             j++;
             
         }
-        for( ; i < colunas - 1 ; i++) //Espaço da esquerda entre a imagem e a interface
+        printf("X");
+        for( ; i < colunas - 2 ; i++) //Espaço da esquerda entre a imagem e a interface
         {
             printf(" ");
         }
@@ -341,6 +343,7 @@ int criaGif(const int z, const int y, const int x, char array[z][y][x])
         printf("|                                       |\n");
         printf("| Caractere(C):  %c                      |\n", character);
         printf("|                                       |\n");
+        printf("|      Outros comandos:                 |\n");
         printf("| (D) \"Desenha\"                         |\n");
         printf("| (S) para finalizar                    |\n");
         printf("| (P) ir para proxima imagem do GIF     |\n");
@@ -477,7 +480,7 @@ int criaGif(const int z, const int y, const int x, char array[z][y][x])
                         break;
                     
                     case 'D': case 'd':
-                        array[iZ][ypen][xpen] = 'K';
+                        array[iZ][ypen][xpen] = character;
                         break;
                     case 'E': case 'e':
                         executaGif(z, y, x, array, z);
