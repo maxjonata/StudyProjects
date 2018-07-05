@@ -51,7 +51,7 @@ int main()
     system("cls");
     mediaAltura/=50;
     mediaAlturaMulheres/=mulheres;
-    // percentual de homens:   (50/100)*homens;
+    // percentual de homens:   (homens/50)*100;
 
     printf("maior altura encontrada: %.2f", menorAltura);                           // a menor altura encontrada;
     printf("\nmenor altura encontrada: %.2f", maiorAltura);                         // a maior altura encontrada;
@@ -60,5 +60,5 @@ int main()
 
     printf("\nnedua de altura da populacao: %.2f", mediaAltura);                     // a média de altura da população;
 
-    printf("\npercentual de homens na populacao: %.2f%%", (float)((50/100)*homens)); // o percentual de homens na população.
+    printf("\npercentual de homens na populacao: %.2f%%", (float)((homens/50)*100)); // o percentual de homens na população.
 }
