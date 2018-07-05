@@ -1,26 +1,30 @@
-/*  Observações:
-a. Cada número N poderá aparecer no vetor, no máximo, N vezes. Logo, a cada operação realizada, deve-se ter o cuidado de que essa regra continua sendo respeitada;
-b. Atenção especial deve ser dada à operação de alteração. Esta deve ser feita enquanto o limite N não for ultrapassado;
+/*
+
+João Alfredo Fernandes Furtado
+Filipe da Silva Duarte
+
+2018.1 - A
+
 */
 
 #include <stdio.h>
 #include <stdlib.h>
 #define cap 10
 
-int contaOcorrencias(int v[], int *quantidade, int numero);
-int testaN(int v[], int *quantidade, int numero);
+int contaOcorrencias(int v[], int quantidade, int numero);
+int testaN(int v[], int quantidade, int numero);
 int insereNumero( int v[], int *quantidade, int numero );
 void removeValor( int v[], int *quantidade, int numero );
 void removeElemento( int v[], int *quantidade, int posicao );
 int alteraOcorrencias( int v[], int *quantidade, int a, int b );
-int retornaPosicao( int v[], int *quantidade , int numero );
-void exibeElementos( int v[], int *quantidade );
+int retornaPosicao( int v[], int quantidade , int numero );
+void exibeElementos( int v[], int quantidade );
 
-int contaOcorrencias(int v[], int *quantidade, int numero) //contador de ocorrencias de N para limitar as operacoes.
+int contaOcorrencias(int v[], int quantidade, int numero) //contador de ocorrencias de N para limitar as operacoes.
 {
     int i, ocorrencias = 0;
 
-    for( i = 0 ; i < *quantidade ; i++)
+    for( i = 0 ; i < quantidade ; i++)
     {
     
         if(v[i] == numero) ocorrencias++;
@@ -31,7 +35,7 @@ int contaOcorrencias(int v[], int *quantidade, int numero) //contador de ocorren
 
 }
 
-int testaN(int v[], int *quantidade, int numero) //testa quantidade de ocorrencias e retorna a quantidade restante disponível
+int testaN(int v[], int quantidade, int numero) //testa quantidade de ocorrencias e retorna a quantidade restante disponível
 {
     if(contaOcorrencias( v, quantidade, numero) < numero)
     {
@@ -45,7 +49,7 @@ int testaN(int v[], int *quantidade, int numero) //testa quantidade de ocorrenci
 
 int insereNumero( int v[], int *quantidade, int numero ) // 1) Inserção de um novo número;
 {
-    int quantidadePermitida = testaN( v, quantidade, numero);
+    int quantidadePermitida = testaN( v, *quantidade, numero);
     if(quantidadePermitida > 0 && *quantidade<(int)cap)
     {
         v[*quantidade] = numero;
@@ -97,7 +101,7 @@ int alteraOcorrencias( int v[], int *quantidade, int a, int b ) // 4) Alteraçã
 
     for( i = 0 ; i < *quantidade ; i++ ) {
         if(v[i] == a) {
-            if(testaN(v, quantidade, b) > 0) {
+            if(testaN(v, *quantidade, b) > 0) {
                 v[i] = b;
             } else {
                 ocorrenciasExcedentes++;
@@ -109,24 +113,25 @@ int alteraOcorrencias( int v[], int *quantidade, int a, int b ) // 4) Alteraçã
 
 }
 
-int retornaPosicao( int v[], int *quantidade , int numero ) // 5) Busca de determinado número, retornando posição de sua primeira ocorrência (caso exista no vetor);
+int retornaPosicao( int v[], int quantidade , int numero ) // 5) Busca de determinado número, retornando posição de sua primeira ocorrência (caso exista no vetor);
 {
     int i;
 
-    for( i = 0 ; i < *quantidade ; i++ ) {
+    for( i = 0 ; i < quantidade ; i++ ) {
         if(v[i] == numero) {
             return i;
         }
 
     }
+    return 0;
 
 }
 
-void exibeElementos( int v[], int *quantidade ) // 6) Exibição de todos os elementos do vetor.
+void exibeElementos( int v[], int quantidade ) // 6) Exibição de todos os elementos do vetor.
 {
     int i;
 
-    for( i = 0 ; i < *quantidade ; i++ ) {
+    for( i = 0 ; i < quantidade ; i++ ) {
         printf("%d ", v[i]);
     }
 
@@ -135,17 +140,17 @@ void exibeElementos( int v[], int *quantidade ) // 6) Exibição de todos os ele
 void menu() 
 {
 
-    printf(" ____________________________________ ");
-    printf("|                                    |");
-    printf("|     Opcoes:                        |");
-    printf("|                                    |");
-    printf("|  1) Inserir numero                 |");
-    printf("|  2) Remover ocorrencias de X       |");
-    printf("|  3) Remover elemento de posicao X  |");
-    printf("|  4) Alterar ocorrencias de A por B |");
-    printf("|  5) Busca primeira posicao de X    |");
-    printf("|  6) Exibir elementos do vetor      |");
-    printf("|____________________________________|");
+    printf(" ____________________________________ \n");
+    printf("|                                    |\n");
+    printf("|     Opcoes:                        |\n");
+    printf("|                                    |\n");
+    printf("|  1) Inserir numero                 |\n");
+    printf("|  2) Remover ocorrencias de X       |\n");
+    printf("|  3) Remover elemento de posicao X  |\n");
+    printf("|  4) Alterar ocorrencias de A por B |\n");
+    printf("|  5) Busca primeira posicao de X    |\n");
+    printf("|  6) Exibir elementos do vetor      |\n");
+    printf("|____________________________________|\n");
     printf(" \\_ Escolha: ");
 
 
@@ -168,16 +173,12 @@ int main() {
                     scanf(" %d", &numero);
 
                 } while (numero < 1);
+
+                system("cls");
                 message = insereNumero( vetor, &quant, numero );
-                if(message) {
-                    system("cls");
-                    printf("%d inserido no vetor na posicao %d", numero, quant-1);
-                    system("pause");
-
-                } else {
-                    printf("Numero de ocorrencias de %d eh igual ou superior a %d, operacao negada.", numero, numero);
-
-                }
+                if  (message) { printf("%d inserido no vetor na posicao %d", numero, quant-1); }
+                else          { printf("Numero de ocorrencias de %d eh igual ou superior a %d, operacao negada.", numero, numero); }
+                system("pause");
                 break;
 
             case 2:
@@ -200,14 +201,14 @@ int main() {
                     scanf(" %d", &numero);
 
                 } while (numero < 0);
+                system("cls");
                 if(numero < quant){
                     removeElemento( vetor, &quant, numero );
-                    system("cls");
-                    printf("Elemento removido do vetor");
+                    printf("Elemento removido do vetor\n\n");
 
                 } else {
-                    system("cls");
-                    printf("Nao ha este indice, %d elementos disponiveis no vetor", quant);
+                    printf("Nao ha este indice, %d elementos disponiveis no vetor\n\n", quant);
+
                 }
                 system("pause");
                 break;
@@ -226,19 +227,17 @@ int main() {
 
                 } while (numero < 1);
                 message = alteraOcorrencias( vetor, &quant, numero, numero2 );
+                system("cls");
                 if(message == 0)
                 {
-                    system("cls");
-                    printf("Todas as ocorrencias de A foram alteradas por B");
-                    system("pause");
+                    printf("Todas as ocorrencias de A foram alteradas por B\n");
                 }
                 else
                 {
-                    system("cls");
                     printf("Todas exceto %d ocorrencias de A foram alteradas por B", message);
-                    printf("\nMotivo: Limite da quantidade de B alcancado.");
-                    system("pause");
+                    printf("\nMotivo: Limite da quantidade de B alcancado.\n");
                 }
+                system("pause");
                 break;
 
             case 5:
@@ -249,14 +248,22 @@ int main() {
 
                 } while (numero < 1);
                 system("cls");
-                printf("numero: %d\nposicao: %d", numero, retornaPosicao( vetor, &quant , numero ) );
+                if(retornaPosicao( vetor, quant , numero ) > 0)
+                {
+                    printf("numero: %d\nposicao: %d \n\n", numero, retornaPosicao( vetor, quant , numero ) );
+                }
+                else
+                {
+                    printf("Nao foi encontrado esse numero");
+                }
                 system("pause");
                 break;
 
             case 6:
                 system("cls");
                 printf("Exibindo elementos...\n");
-                exibeElementos( vetor, &quant );
+                exibeElementos( vetor, quant );
+                printf("\n\n");
                 system("pause");
                 break;
 

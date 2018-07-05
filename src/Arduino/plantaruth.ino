@@ -14,10 +14,11 @@ Ultrasonic ultrasonico(TRIGGER_PIN, ECHO_PIN);
 
 void setup()
 {
-  Serial.begin(9600);
-  pinMode(UMIDADE, INPUT);
+  Serial.begin(9600);               // Iniciando o serial de testes...
   Serial.println("Lendo dados...");
-  lcd.begin(16,2);
+
+  pinMode(UMIDADE, INPUT);          // Inicializa o pino de umidade
+  lcd.begin(16,2);                  // Inicializa o LCD( linhas, colunas)
 }
 
 void loop()
