@@ -28,4 +28,5 @@
         "Red"
     ],
     "C_Cpp.errorSquiggles": "Disabled",
+    "C_Cpp.default.intelliSenseMode": "clang-x64",
 }

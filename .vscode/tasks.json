@@ -6,7 +6,7 @@
         {
             "label": "Build C",
             "type": "shell",
-            "command": "gcc",
+            "command": "cmder/bin/MinGW64/bin/gcc.exe",
             "args": [
                 "${file}",
                 "-o",
@@ -16,9 +16,7 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "problemMatcher": [
-                "$gcc"
-            ]
+            "problemMatcher": [],
         },
         {
             "label": "Build JAVA",
