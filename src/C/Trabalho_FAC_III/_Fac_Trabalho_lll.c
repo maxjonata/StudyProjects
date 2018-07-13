@@ -3,12 +3,13 @@
 
 float strToNum(char string[]) //x. strToNum: dada uma string, converte-a para o valor numérico equivalente, caso possível.
 {
+    int i, decimal = 0, negativo = 1;
+    float numero = 0, algarismo;
+
     /*
     rtim(string);
     ltrim(string);
     */
-    int i, decimal = 0, negativo = 1;
-    float numero = 0, algarismo;
 
     for (i = 0; i < strlen(string); i++)
     {
@@ -53,4 +54,30 @@ float strToNum(char string[]) //x. strToNum: dada uma string, converte-a para o 
 
     numero *= negativo;
     return numero;
+}
+
+int substring(char string1[], char string2[])     //ix.  substring: dadas duas strings s1 e s2, verifica se s1 é  uma  substring  de s2,
+{                                               //         retornando  a sua posição em s2, se for uma substring, ou -1, caso contrário
+    int i;
+
+    for( i = 0 ; i < strlen(string1) ; i++ )
+    {
+        if(*(string1 + (i * sizeof(char)) ) == *string2)
+        {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+int main()
+{
+    char linha[] = "Oi eu sou o goku.";
+    char teste[] = "goku.";
+    int resposta = 69;
+
+    resposta = substring(linha, teste);
+
+    printf("%d", resposta);
 }

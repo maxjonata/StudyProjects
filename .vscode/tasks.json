@@ -5,8 +5,8 @@
     "tasks": [
         {
             "label": "Build C",
-            "type": "shell",
-            "command": "cmder/bin/MinGW64/bin/gcc.exe",
+            "type": "shgccell",
+            "command": "gcc",
             "args": [
                 "${file}",
                 "-o",
