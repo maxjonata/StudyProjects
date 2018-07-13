@@ -3,7 +3,11 @@
 
 float strToNum(char string[]) //x. strToNum: dada uma string, converte-a para o valor numérico equivalente, caso possível.
 {
-    int i, decimal = 0, negativo = 0;
+    /*
+    rtim(string);
+    ltrim(string);
+    */
+    int i, decimal = 0, negativo = 1;
     float numero = 0, algarismo;
 
     for (i = 0; i < strlen(string); i++)
@@ -14,7 +18,7 @@ float strToNum(char string[]) //x. strToNum: dada uma string, converte-a para o 
         }
         else
         {
-            if (numero > 0 && string[i] == '.')
+            if (decimal == 0 && numero > 0 && string[i] == '.')
             {
                 decimal = 1;
             }
@@ -41,7 +45,7 @@ float strToNum(char string[]) //x. strToNum: dada uma string, converte-a para o 
                 }
                 else
                 {
-                    return '\0';
+                    return '\0'; //Se em qualquer momento não tiver um -,. ou número, retornará como um erro.
                 }
             }
         }
