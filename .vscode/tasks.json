@@ -5,7 +5,7 @@
     "tasks": [
         {
             "label": "Build C",
-            "type": "shgccell",
+            "type": "shell",
             "command": "gcc",
             "args": [
                 "${file}",
