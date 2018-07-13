@@ -25,4 +25,9 @@
     ],
     "C_Cpp.errorSquiggles": "Disabled",
     "C_Cpp.default.intelliSenseMode": "clang-x64",
+    "indentRainbow.colors": [
+        "rgba(64,54,0,0.3)",
+        "rgba(55,28,54,0.3)",
+        "rgba(34,52,63,0.3)"
+    ],
 }
