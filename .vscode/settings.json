@@ -1,8 +1,4 @@
 {
-    "files.associations": {
-        "stdio.h": "c",
-        "stdlib.h": "c"
-    },
     "bracketPairColorizer.showBracketsInGutter": true,
     "bracketPairColorizer.showBracketsInRuler": true,
     "bracketPairColorizer.timeOut": 0,
