@@ -1,13 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 
 void delay(unsigned int mseconds);
-void limpaGif(int z, int y, int x, char array[z][y][x]);
+void limpaGif(const int z, const int y, const int x, char array[z][y][x]);
 void menuPrincipal();
 void abertura();
-int criaGif(const int z, const int y, const int x, char array[z][y][x]);
-void executaGif(int z, int y, int x, char array[z][y][x], int zUsados);
+void criaGif(const int z, const int y, const int x, char array[z][y][x], int *zUsados);
+void executaGif(const int z, const int y, const int x, char array[z][y][x], int zUsados);
 
 void delay(unsigned int mseconds)
 {
@@ -16,7 +17,7 @@ void delay(unsigned int mseconds)
         ;
 }
 
-void limpaGif(int z, int y, int x, char array[z][y][x])
+void limpaGif(const int z, const int y, const int x, char array[z][y][x])
 {
     int iX, iY, iZ;
 
@@ -26,7 +27,7 @@ void limpaGif(int z, int y, int x, char array[z][y][x])
         {
             for (iX = 0; iX < x; iX++)
             {
-                array[iZ][iY][iX] = ' ';
+                array[iZ][iY][iX] = 'x';
             }
         }
     }
@@ -52,206 +53,207 @@ void menuPrincipal()
 
 void abertura()
 {
+    const int z = 46, y = 3, x = 19;
+    char abertura[z][y][x];
 
-    system("cls");
-    printf("\n*Gorgeous  *");
-    delay(250);
-    system("cls");
-    printf("\n* Gorgeous *");
-    delay(250);
-    system("cls");
-    printf("\n*  Gorgeous*");
-    delay(250);
-    system("cls");
-    printf("\n* Gorgeous *");
+    strcpy(abertura[0][0],"*Gorgeous  *       ");
+    strcpy(abertura[0][1],"                   ");
+    strcpy(abertura[0][2],"                   ");
 
-    delay(250);
-    system("cls");
-    printf("\n* Gorgeous *");
-    printf("\n*Infinite  *");
-    delay(250);
-    system("cls");
-    printf("\n* Gorgeous *");
-    printf("\n* Infinite *");
-    delay(250);
-    system("cls");
-    printf("\n* Gorgeous *");
-    printf("\n*  Infinite*");
-    delay(250);
-    system("cls");
-    printf("\n* Gorgeous *");
-    printf("\n* Infinite *");
+    strcpy(abertura[1][0],"* Gorgeous *       ");
+    strcpy(abertura[1][1],"                   ");
+    strcpy(abertura[1][2],"                   ");
 
-    delay(250);
-    system("cls");
-    printf("\n* Gorgeous *");
-    printf("\n* Infinite *");
-    printf("\n*Formuler  *");
-    delay(250);
-    system("cls");
-    printf("\n* Gorgeous *");
-    printf("\n* Infinite *");
-    printf("\n* Formuler *");
-    delay(250);
-    system("cls");
-    printf("\n* Gorgeous *");
-    printf("\n* Infinite *");
-    printf("\n*  Formuler*");
-    delay(250);
-    system("cls");
-    printf("\n* Gorgeous *");
-    printf("\n* Infinite *");
-    printf("\n* Formuler *");
+    strcpy(abertura[2][0],"*  Gorgeous*       ");
+    strcpy(abertura[2][1],"                   ");
+    strcpy(abertura[2][2],"                   ");
 
-    delay(250);
-    system("cls");
-    printf("\n* Gorgeous *");
-    printf("\n* Infinite * M");
-    printf("\n* Formuler *");
-    delay(250);
-    system("cls");
-    printf("\n* Gorgeous *");
-    printf("\n* Infinite * MA");
-    printf("\n* Formuler *");
-    delay(250);
-    system("cls");
-    printf("\n* Gorgeous *");
-    printf("\n* Infinite * MAK");
-    printf("\n* Formuler *");
-    delay(250);
-    system("cls");
-    printf("\n* Gorgeous *");
-    printf("\n* Infinite * MAKE");
-    printf("\n* Formuler *");
-    delay(250);
-    system("cls");
-    printf("\n* Gorgeous *");
-    printf("\n* Infinite * MAKER");
-    printf("\n* Formuler *");
+    strcpy(abertura[3][0],"* Gorgeous *       ");
+    strcpy(abertura[3][1],"                   ");
+    strcpy(abertura[3][2],"                   ");
 
-    delay(250);
-    system("cls");
-    printf("\n* Gorgeou *");
-    printf("\n* Infinit * MAKER");
-    printf("\n* Formule *");
-    delay(250);
-    system("cls");
-    printf("\n* Gorgeo *");
-    printf("\n* Infini * MAKER");
-    printf("\n* Formul *");
-    delay(250);
-    system("cls");
-    printf("\n* Gorge *");
-    printf("\n* Infin * MAKER");
-    printf("\n* Formu *");
-    delay(250);
-    system("cls");
-    printf("\n* Gorg *");
-    printf("\n* Infi * MAKER");
-    printf("\n* Form *");
-    delay(250);
-    system("cls");
-    printf("\n* Gor *");
-    printf("\n* Inf * MAKER");
-    printf("\n* For *");
-    delay(250);
-    system("cls");
-    printf("\n* Go *");
-    printf("\n* In * MAKER");
-    printf("\n* Fo *");
-    delay(250);
-    system("cls");
-    printf("\n* G *");
-    printf("\n* I * MAKER");
-    printf("\n* F *");
-    delay(250);
-    system("cls");
-    printf("\n*G  *");
-    printf("\n* I * MAKER");
-    printf("\n* F *");
-    delay(250);
-    system("cls");
-    printf("");
-    printf("\n*GI * MAKER");
-    printf("\n* F *");
-    delay(250);
-    system("cls");
-    printf("");
-    printf("\n*GI * MAKER");
-    printf("\n*  F*");
-    delay(250);
-    system("cls");
-    printf("");
-    printf("\n*GIF* MAKER");
-    delay(500);
-    system("cls");
-    delay(500);
-    printf("");
-    printf("\n*GIF* MAKER");
-    delay(500);
-    system("cls");
-    delay(500);
-    printf("");
-    printf("\n*GIF* MAKER");
-    delay(500);
-    system("cls");
-    printf("");
-    printf("\nGIF* MAKER");
-    delay(250);
-    system("cls");
-    printf("");
-    printf("\nIF* MAKER");
-    delay(250);
-    system("cls");
-    printf("");
-    printf("\nF* MAKER");
-    delay(250);
-    system("cls");
-    printf("");
-    printf("\n* MAKER");
-    delay(250);
-    system("cls");
-    printf("");
-    printf("\n MAKER");
-    delay(250);
-    system("cls");
-    printf("");
-    printf("\nMAKER");
-    delay(250);
-    system("cls");
-    printf("");
-    printf("\nAKER");
-    delay(250);
-    system("cls");
-    printf("");
-    printf("\nKER");
-    delay(250);
-    system("cls");
-    printf("");
-    printf("\nER");
-    delay(250);
-    system("cls");
-    printf("");
-    printf("\nR");
-    delay(250);
-    system("cls");
-    printf("");
+    strcpy(abertura[4][0],"* Gorgeous *       ");
+    strcpy(abertura[4][1],"*Infinite  *       ");
+    strcpy(abertura[4][2],"                   ");
 
-    delay(250);
-    system("cls");
-    printf("\n.");
-    delay(250);
-    system("cls");
-    printf("\n..");
-    delay(250);
-    system("cls");
-    printf("\n...");
+    strcpy(abertura[5][0],"* Gorgeous *       ");
+    strcpy(abertura[5][1],"* Infinite *       ");
+    strcpy(abertura[5][2],"                   ");
+
+    strcpy(abertura[6][0],"* Gorgeous *       ");
+    strcpy(abertura[6][1],"*  Infinite*       ");
+    strcpy(abertura[6][2],"                   ");
+
+    strcpy(abertura[7][0],"* Gorgeous *       ");
+    strcpy(abertura[7][1],"* Infinite *       ");
+    strcpy(abertura[7][2],"                   ");
+
+    strcpy(abertura[8][0],"* Gorgeous *       ");
+    strcpy(abertura[8][1],"* Infinite *       ");
+    strcpy(abertura[8][2],"*Formuler  *       ");
+
+    strcpy(abertura[9][0],"* Gorgeous *       ");
+    strcpy(abertura[9][1],"* Infinite *       ");
+    strcpy(abertura[9][2],"* Formuler *       ");
+
+    strcpy(abertura[10][0],"* Gorgeous *      ");
+    strcpy(abertura[10][1],"* Infinite *      ");
+    strcpy(abertura[10][2],"*  Formuler*      ");
+
+    strcpy(abertura[11][0],"* Gorgeous *      ");
+    strcpy(abertura[11][1],"* Infinite *      ");
+    strcpy(abertura[11][2],"* Formuler *      ");
+
+    strcpy(abertura[12][0],"* Gorgeous *      ");
+    strcpy(abertura[12][1],"* Infinite * M    ");
+    strcpy(abertura[12][2],"* Formuler *      ");
+
+    strcpy(abertura[13][0],"* Gorgeous *      ");
+    strcpy(abertura[13][1],"* Infinite * MA   ");
+    strcpy(abertura[13][2],"* Formuler *      ");
+
+    strcpy(abertura[14][0],"* Gorgeous *      ");
+    strcpy(abertura[14][1],"* Infinite * MAK  ");
+    strcpy(abertura[14][2],"* Formuler *      ");
+
+    strcpy(abertura[15][0],"* Gorgeous *      ");
+    strcpy(abertura[15][1],"* Infinite * MAKE ");
+    strcpy(abertura[15][2],"* Formuler *      ");
+
+    strcpy(abertura[16][0],"* Gorgeous *      ");
+    strcpy(abertura[16][1],"* Infinite * MAKER");
+    strcpy(abertura[16][2],"* Formuler *      ");
+
+    strcpy(abertura[17][0],"* Gorgeou *       ");
+    strcpy(abertura[17][1],"* Infinit * MAKER ");
+    strcpy(abertura[17][2],"* Formule *       ");
+
+    strcpy(abertura[18][0],"* Gorgeo *        ");
+    strcpy(abertura[18][1],"* Infini * MAKER  ");
+    strcpy(abertura[18][2],"* Formul *        ");
+
+    strcpy(abertura[19][0],"* Gorge *         ");
+    strcpy(abertura[19][1],"* Infin * MAKER   ");
+    strcpy(abertura[19][2],"* Formu *         ");
+
+    strcpy(abertura[20][0],"* Gorg *          ");
+    strcpy(abertura[20][1],"* Infi * MAKER    ");
+    strcpy(abertura[20][2],"* Form *          ");
+
+    strcpy(abertura[21][0],"* Gor *           ");
+    strcpy(abertura[21][1],"* Inf * MAKER     ");
+    strcpy(abertura[21][2],"* For *           ");
+
+    strcpy(abertura[22][0],"* Go *            ");
+    strcpy(abertura[22][1],"* In * MAKER      ");
+    strcpy(abertura[22][2],"* Fo *            ");
+
+    strcpy(abertura[23][0],"* G *             ");
+    strcpy(abertura[23][1],"* I * MAKER       ");
+    strcpy(abertura[23][2],"* F *             ");
+    
+    strcpy(abertura[24][0],"*G  *             ");
+    strcpy(abertura[24][1],"* I * MAKER       ");
+    strcpy(abertura[24][2],"* F *             ");
+
+    strcpy(abertura[25][0],"                  ");
+    strcpy(abertura[25][1],"*GI * MAKER       ");
+    strcpy(abertura[25][2],"* F *             ");
+
+    strcpy(abertura[26][0],"                  ");
+    strcpy(abertura[26][1],"*GI * MAKER       ");
+    strcpy(abertura[26][2],"*  F*             ");
+
+    strcpy(abertura[27][0],"                  ");
+    strcpy(abertura[27][1],"*GIF* MAKER       ");
+    strcpy(abertura[27][2],"                  ");
+
+    strcpy(abertura[28][0],"                  ");
+    strcpy(abertura[28][1],"                  ");
+    strcpy(abertura[28][2],"                  ");
+
+    strcpy(abertura[29][0],"                  ");
+    strcpy(abertura[29][1],"*GIF* MAKER       ");
+    strcpy(abertura[29][2],"                  ");
+
+    strcpy(abertura[30][0],"                  ");
+    strcpy(abertura[30][1],"                  ");
+    strcpy(abertura[30][2],"                  ");
+
+    strcpy(abertura[31][0],"                  ");
+    strcpy(abertura[31][1],"*GIF* MAKER       ");
+    strcpy(abertura[31][2],"                  ");
+
+    strcpy(abertura[32][0],"                  ");
+    strcpy(abertura[32][1],"                  ");
+    strcpy(abertura[32][2],"                  ");
+
+    strcpy(abertura[33][0],"                  ");
+    strcpy(abertura[33][1],"GIF* MAKER        ");
+    strcpy(abertura[33][2],"                  ");
+
+    strcpy(abertura[34][0],"                  ");
+    strcpy(abertura[34][1],"IF* MAKER         ");
+    strcpy(abertura[34][2],"                  ");
+
+    strcpy(abertura[35][0],"                  ");
+    strcpy(abertura[35][1],"F* MAKER          ");
+    strcpy(abertura[35][2],"                  ");
+
+    strcpy(abertura[36][0],"                  ");
+    strcpy(abertura[36][1],"* MAKER           ");
+    strcpy(abertura[36][2],"                  ");
+
+    strcpy(abertura[37][0],"                  ");
+    strcpy(abertura[37][1]," MAKER            ");
+    strcpy(abertura[37][2],"                  ");
+
+    strcpy(abertura[38][0],"                  ");
+    strcpy(abertura[38][1],"MAKER             ");
+    strcpy(abertura[38][2],"                  ");
+
+    strcpy(abertura[39][0],"                  ");
+    strcpy(abertura[39][1],"AKER              ");
+    strcpy(abertura[39][2],"                  ");
+
+    strcpy(abertura[40][0],"                  ");
+    strcpy(abertura[40][1],"KER               ");
+    strcpy(abertura[40][2],"                  ");
+
+    strcpy(abertura[41][0],"                  ");
+    strcpy(abertura[41][1],"ER                ");
+    strcpy(abertura[41][2],"                  ");
+
+    strcpy(abertura[42][0],"                  ");
+    strcpy(abertura[42][1],"R                 ");
+    strcpy(abertura[42][2],"                  ");
+
+    strcpy(abertura[43][0],"                  ");
+    strcpy(abertura[43][1],".                 ");
+    strcpy(abertura[43][2],"                  ");
+
+    strcpy(abertura[44][0],"                  ");
+    strcpy(abertura[44][1],"..                ");
+    strcpy(abertura[44][2],"                  ");
+
+    strcpy(abertura[45][0],"                  ");
+    strcpy(abertura[45][1],"...               ");
+    strcpy(abertura[45][2],"                  ");
+
+    executaGif(z,y,x, abertura, z);
 }
 
-int criaGif(const int z, const int y, const int x, char array[z][y][x])
+void criaGif(const int z, const int y, const int x, char array[z][y][x], int *zUsados)
 {
-    int iZ,iY,iX,i,j,xpen = 0,ypen = 0, xpenaux, ypenaux, zaux = 101, colunas = 40,aux = 0;
+    const int colunas = 40;
+    int iZ,iY,iX,i,j,xpen = 0,ypen = 0, xpenaux, ypenaux, zaux = 101,aux = 0;
     char comando[50], character = 'O';
+    char espacos[40] = {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '};
+    char top[40] = {'_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_','_'};
+    char bottom[40] = {'^','^','^','^','^','^','^','^','^','^','^','^','^','^','^','^','^','^','^','^','^','^','^','^','^','^','^','^','^','^','^','^','^','^','^','^','^','^','^','^'};
+    char column[40] = {'0','1','2','3','4','5','6','7','8','9','1','1','1','1','1','1','1','1','1','1','2','2','2','2','2','2','2','2','2','2','3','3','3','3','3','3','3','3','3','3'};
+    char column2[40] = {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','0','1','2','3','4','5','6','7','8','9','0','1','2','3','4','5','6','7','8','9','0','1','2','3','4','5','6','7','8','9',};
+
 
     for( iZ = 0 ; iZ < z ; ) //Etapas
     {
@@ -261,79 +263,31 @@ int criaGif(const int z, const int y, const int x, char array[z][y][x])
         printf("|  CRIANDO GIF      Imagem(z) (%02d|%02d)   |\n", iZ+1,z);
         printf("|_______________________________________|\n"); // 40 colunas
         printf("|                                       |\n");
+
         
-        printf("|");
-        for( i = 5 ; i < (colunas - (x)) / 2 ; i++) //Espaço da esquerda entre a imagem e a interface
+        for(iY = -1 ; iY <= (y+2) ; iY++) //GERADOR AUTOMATIZADO DE IMAGEM
         {
-            printf(" ");
-        }
-        printf("Y   ");
-        for( --i ; i < (colunas - (colunas - (x)) / 2) - 1  ; i++) //Espaço da esquerda entre a imagem e a interface
-        {
-            printf("_");
-        }
-        for( ; i < colunas - 1 ; i++) //Espaço da esquerda entre a imagem e a interface
-        {
-            printf(" ");
-        }
-        printf("|\n");
-        for( iY = 0 ; iY < y ; iY++ ) //Linhas
-        {
-            printf("|");
-            for( i = 5 ; i < (colunas - (x)) / 2 ; i++) //Espaço da esquerda entre a imagem e a interface
+            if(iY < 0) // TRAÇOS EM CIMA PARA DEIXAR BONITO
             {
-                printf(" ");
+                printf("|%.*s%.*s%.*s|\n", ((colunas - x)/2) + 1, espacos, x, top, ((colunas - x)/2) - ((x%2 == 0)?1:0) - 1, espacos);
             }
-            printf("%02d >", iY);
-            for( iX = 0 ; iX < x ; iX++ ) //Colunas
+            else if(iY == y) // SINAIS DE SETINHA PARA DEIXAR BONITO
             {
-                printf("%c", array[iZ][iY][iX]);
+                printf("|%.*s%.*s%.*s|\n", ((colunas - x)/2) + 1, espacos, x, bottom, ((colunas - x)/2) - ((x%2 == 0)?1:0) - 1, espacos);
             }
-            printf("|");
-            for( i = 1 ; i < (colunas - x) / 2 ; i++) //Espaço da direita entre a imagem e a interface
+            else if(iY == y+1) // UNIDADE DOS NUMEROS SEM DEZENAS
             {
-                printf(" ");
+                printf("|%.*s%.*s%.*s|\n", ((colunas - x)/2) + 1, espacos, x, column, ((colunas - x)/2) - 1 -((x%2 == 0)?1:0), espacos);
             }
-            printf("|\n");
-        }
-        printf("|");
-        for( i = 1 ; i < (colunas - (x)) / 2 ; i++) //Espaço da esquerda entre a imagem e a interface
-        {
-            printf(" ");
-        }
-        for( --i ; i < (colunas - (colunas - (x)) / 2) - 1  ; i++) //Espaço da esquerda entre a imagem e a interface
-        {
-            printf("^");
-        }
-        for( ; i < colunas - 1 ; i++) //Espaço da esquerda entre a imagem e a interface
-        {
-            printf(" ");
-        }
-        printf("|\n");
-        printf("|");
-        for( i = 1 ; i < (colunas - (x)) / 2 ; i++) //Espaço da esquerda entre a imagem e a interface
-        {
-            printf(" ");
-        }
-        for(j = 0, --i ; i < (colunas - (colunas - (x)) / 2) - 1  ; i++) //Espaço da esquerda entre a imagem e a interface
-        {
-            if(j < 10)
+            else if(iY == y+2)// UNIDADE DOS NUMEROS COM DEZENAS
             {
-                printf("%d", j);
+                printf("|%.*s%.*s%.*s|\n", ((colunas - x)/2) + 1, espacos, x, column2, ((colunas - x)/2) - 1 - ((x%2 == 0)?1:0), espacos);
             }
-            else
+            else // LINHAS
             {
-                printf(".");
+                printf("|%.*s%d >%.*s|%.*s|\n", ((colunas - x)/2) - 2, espacos, iY, x,array[iZ][iY], (((colunas - x)/2) - 1 - ((x%2 == 0)?2:0)), espacos);
             }
-            j++;
-            
         }
-        printf("X");
-        for( ; i < colunas - 2 ; i++) //Espaço da esquerda entre a imagem e a interface
-        {
-            printf(" ");
-        }
-        printf("|\n");
         
         printf("|                                       |\n");
         printf("| Detalhes do \"Lapis\" na edicao:        |\n");
@@ -345,6 +299,7 @@ int criaGif(const int z, const int y, const int x, char array[z][y][x])
         printf("|                                       |\n");
         printf("|      Outros comandos:                 |\n");
         printf("| (D) \"Desenha\"                         |\n");
+        printf("| (E) \"Executa\"                         |\n");
         printf("| (S) para finalizar                    |\n");
         printf("| (P) ir para proxima imagem do GIF     |\n");
         printf("|_______________________________________|\n");
@@ -472,7 +427,7 @@ int criaGif(const int z, const int y, const int x, char array[z][y][x])
                 switch(comando[i])
                 {
                     case 'S': case 's':
-                        return(iZ+1);
+                        *zUsados = iZ+1;
                         break;
 
                     case 'P': case 'p':
@@ -492,10 +447,10 @@ int criaGif(const int z, const int y, const int x, char array[z][y][x])
 
 
     }
-    return(z);
+    *zUsados = z;
 }
 
-void executaGif(int z, int y, int x, char array[z][y][x], int zUsados)
+void executaGif(const int z, const int y, const int x, char array[z][y][x], int zUsados)
 {
     int iX, iY, iZ;
 
@@ -522,7 +477,7 @@ int main()
     char gif[z][y][x];
     limpaGif(z, y, x, gif);
 
-    abertura();
+    //abertura();
 
     do
     {
@@ -534,7 +489,7 @@ int main()
         switch (opcao)
         {
         case 1: //Criar GIF
-            zQuant = criaGif(z, y, x, gif);
+            criaGif(z, y, x, gif, &zQuant);
             break;
 
         case 2: //Carregar GIF

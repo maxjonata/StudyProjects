@@ -51,7 +51,9 @@
                 "C:/MinGW/lib/gcc/mingw32/6.3.0/include/ssp",
                 "C:/MinGW/include",
                 "C:/MinGW/lib/gcc/mingw32/6.3.0/include",
-                "C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/mingw32"
+                "C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/mingw32",
+                "D:/MinGW/include",
+                "D:/MinGW/lib/gcc/mingw32/6.3.0/include"
             ],
             "defines": [
                 "_DEBUG",
