@@ -12,9 +12,55 @@
 }
 */
 
-void concatN(char stringParaQualVaiCopiar[], char stringQueVaiSerCopiada[], int NprimeirosCaracteres)
+void rtrim(char vetor[]);
+void ltrim(char vetor[]);
+void trim(char vetor[]);
+void desloca(char string[], char caractere, char charPos[]);
+void deslocInicio(char string[], char caractere);
+void deslocFim(char string[], char caractere);
+void copyN(char stringA[], char stringB[], int N);
+void concatN(char stringA[], char stringB[], int N);
+char comum(char string1[], char string2[]);
+int substring(char string1[], char string2[]);
+float strToNum(char string[]);
+
+void rtrim(char vetor[]) //i.    rtrim: remove todos  os  espaços  em  branco existentes ao final de uma string
 {
-    //TODO:
+    int i;
+
+    for ( i = strlen(vetor) - 1 ; vetor[i] == ' ' ; i-- ) //
+    {
+        vetor[i] = '\0';
+    }
+}
+
+void ltrim(char vetor[]) //ii.      ltrim: remove todos  os  espaços  em  branco existentes no ínício de uma string;
+{
+	int i;
+
+    while(vetor[0] == ' ')
+    {
+        for( i = 0 ; i < strlen(vetor) ; i++ )
+        {
+            vetor[i] = vetor[i+1];
+        }
+    }
+}
+
+void trim(char vetor[]) //iii.      trim:remove todos  os  espaços  em  branco existentes em uma string;
+{
+    int i, qtd = 0;
+    char vetoraux[strlen(vetor)];
+
+    for(i = 0; i < strlen(vetor); i++)
+    {
+        if(vetor[i] != ' ')
+        {
+            vetoraux[qtd] = vetor[i];
+            qtd++;
+        }
+    }
+    vetoraux[qtd] = '\0';
 }
 
 void desloca(char string[], char caractere, char charPos[]) // funcao auxiliar para as funcoes de deslocar inicio e deslocar fim
@@ -27,11 +73,11 @@ void desloca(char string[], char caractere, char charPos[]) // funcao auxiliar p
     {
         if(string[i] != caractere)
         {
-            naoCaracteres1[quantidade[2]++] = string[i];
+            naoCaracteres1[quantidade[1]++] = string[i];
         }
         else
         {
-            caracteres0[quantidade[1]++] = caractere;
+            caracteres0[quantidade[0]++] = caractere;
         }
     }
 
@@ -58,6 +104,27 @@ void deslocInicio(char string[], char caractere)    //iv.    deslocInicio: deslo
 void deslocFim(char string[], char caractere)    //v.     deslocFim:  desloca  todas  as  ocorrências  de determinado  caracter de  uma  string para o seu fim;
 {
     desloca(string, caractere, "fim");
+}
+
+void copyN(char stringA[], char stringB[], int N) //vi.     copyN:  copia os N primeiros caracteres  de uma string para outra
+{
+    int i = 0;
+
+    for( i = 0 ; i < N ; i++ )
+    {
+        stringA[i] = stringB[i];
+    }
+}
+
+void concatN(char stringA[], char stringB[], int N) //vii.      concatN:concatena os Nprimeiros caracteres de uma string ao final de outra;
+{
+    int i, j;
+
+    for(i = strlen(stringA), j = 0 ; i < strlen(stringA) + N ; i++, j++)
+    {
+        stringA[i] = stringB[j];
+    }
+    stringA[i] = '\0';
 }
 
 char comum(char string1[], char string2[])      //viii.    comum: dadas duas strings s1 e s2, retorna o primeiro  caracter comum  às  duas.
@@ -158,17 +225,4 @@ float strToNum(char string[])       //x.    strToNum: dada uma string, converte-
 
     numero *= negativo;
     return numero;
-}
-
-int main()
-{
-    char linha[] = "a abacate acabou aqui.";
-    char teste[sizeof(linha)];
-    int resposta = 69;
-
-    printf("Teste: ");
-    gets(teste);
-    resposta = substring(linha, teste);
-
-    printf("%d", resposta);
 }

@@ -45,6 +45,8 @@
         {
             "name": "Win32",
             "includePath": [
+                "C:\\Users\\jonh_\\AppData\\Local\\Arduino15\\packages\\arduino\\tools\\**",
+                "C:\\Users\\jonh_\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\sam\\1.6.11\\**",
                 "${workspaceFolder}",
                 "C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/tr1",
                 "C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++",
@@ -52,8 +54,8 @@
                 "C:/MinGW/include",
                 "C:/MinGW/lib/gcc/mingw32/6.3.0/include",
                 "C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/mingw32",
-                "D:/MinGW/include",
-                "D:/MinGW/lib/gcc/mingw32/6.3.0/include"
+                "C:/Workspace/MinGW/include",
+                "C:/Workspace/MinGW/lib/gcc/mingw32/6.3.0/include"
             ],
             "defines": [
                 "_DEBUG",
