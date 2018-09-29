@@ -31,7 +31,8 @@
         "rgba(34,52,63,0.1)"
     ],
     "files.associations": {
-        "string": "c"
+        "string": "c",
+        "ratio": "c"
     },
     "git.ignoreLimitWarning": true,
 }
