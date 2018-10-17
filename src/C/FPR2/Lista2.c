@@ -132,7 +132,36 @@ Desenvolver uma função que remova determinado elemento (todas as suas ocorrên
 
 /*
 QUESTÃO 08:
-Dados um vetor de reais (cujos elementos estão ordenados crescentemente) e um número x, retornar a posição da primeira ocorrência de x (caso encontre-se no vetor) ou a posição na qual deveria estar (caso contrário).
+Dados um vetor de reais (cujos elementos estão ordenados crescentemente) e um número x, 
+retornar a posição da primeira ocorrência de x (caso encontre-se no vetor) ou a posição na qual deveria estar (caso contrário).
+*/
+
+      int q8(float reais[], float x)
+      {
+            int quantidade = sizeof(reais);
+            int min, max, metade;
+            for(min = 0, max = quantidade, metade = (quantidade / 2) ; max != min ; metade = (max - min / 2))
+            {
+                  if(reais[metade] == x)
+                  {
+                        return metade;
+                  }
+                  else
+                  {
+                        if(reais[metade] > x)
+                        {
+                              max = metade;
+                        }
+                        else
+                        {
+                              min = metade;
+                        }
+                  }
+            }
+            return min;
+      }
+
+/*
 QUESTÃO 09:
 Implementar a função de inserção de determinado elemento em um vetor ordenado crescentemente (dica: utilizar a função do item 08 para auxiliar).
 QUESTÃO 10:
