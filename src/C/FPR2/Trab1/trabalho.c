@@ -9,6 +9,28 @@ typedef struct{
 
 } estacionamento;
 
+void limpa(estacionamento matriz[10][10][8], int *ultimo_andar, int *ultima_fila, int *ultima_vaga)
+{
+    int andar,fila,vaga;
+    for(andar = 0 ; andar < 10 ; andar++)
+    {
+        for(fila = 0 ; fila < 10 ; fila++)
+        {
+            for(vaga = 0 ; vaga < 8 ; vaga++)
+            {
+                strcpy(matriz[andar][fila][vaga].tipo, "0000000000");
+                strcpy(matriz[andar][fila][vaga].placa, "0000000");
+                strcpy(matriz[andar][fila][vaga].contato, "00000000000");
+                strcpy(matriz[andar][fila][vaga].data, "00000000");
+            }
+        }
+    }
+    
+    *ultimo_andar = andar;
+    *ultima_fila = fila;
+    *ultima_vaga = vaga;
+}
+
 void codeToCoords(char codigo[5], int *l1, int *l2, int *l3)
 {
 
@@ -39,7 +61,7 @@ void coordsToCode(char codigo[6], int l1, int l2, int l3)
     codigo[5] = '\0';
 }
 
-void leitura(estacionamento matriz[10][10][8], int *ultimo_andar)
+void leitura(estacionamento matriz[10][10][8])
 {
     //take data from FILE
     char reading = '-';
@@ -74,10 +96,9 @@ void leitura(estacionamento matriz[10][10][8], int *ultimo_andar)
         fseek(arquivo, 2, SEEK_CUR);
     }
     fclose(arquivo);
-    *ultimo_andar = andar;
 }
 
-void escrita(estacionamento matriz[10][10][8], int ultimo_andar)
+void escrita(estacionamento matriz[10][10][8])
 {
     //take data from FILE
     char local[6];
@@ -86,7 +107,7 @@ void escrita(estacionamento matriz[10][10][8], int ultimo_andar)
     arquivo = fopen("database", "w");
 
     //put data on "matriz"
-    for(andar = 0 ; andar < ultimo_andar ; andar++)
+    for(andar = 0 ; andar < 10 ; andar++)
     {
         for(fila = 0 ; fila < 10 ; fila++)
         {
@@ -107,20 +128,52 @@ void escrita(estacionamento matriz[10][10][8], int ultimo_andar)
     fclose(arquivo);
 }
 
+int procuraPlaca(estacionamento matriz[10][10][8], int *l1, int *l2, int *l3, placa[8])
+{
+    int x,y,z;
+    
+    for( x = 0 ; x < 10 ; x++ )
+    {
+        for( y = 0 ; y < 10 ; y++ )
+        {
+            for( z = 0 ; z < 10 ; z++ )
+            {
+                if(strcmp(matriz[x][y][z].placa, placa) == 0)
+                {
+                    *l1 = x;
+                    *l2 = y;
+                    *l3 = z;
+                    return 1;
+                }
+                else
+                {
+                    if()
+                }
+            }
+        }
+    }
+    return 0;
+}
+
 int main()
 {
-    
+    //                A B C D são só para mensalistas
     //10 andares      A B C D E F G H I J
     //10 filas
     //8 vagas por fila
 
-    char choice[6];
+    int choice;
     char placa[8];
+    char codigo[6];
+    int andar, fila, vaga;
+    andar = fila = vaga = -1;
     estacionamento vaga[10][10][8]; //vagas a serem utilizadas
     int ultimoAndar;                //ultimo andar utilizado
+    int finish = 0;
+    limpa(vaga, &ultimoAndar, &ultimaFila, &ultimaVaga);
     leitura(vaga, &ultimoAndar);    //lê o banco de dados
 
-    while(choice != "saida")
+    while(choice != 0)
     {
         do
         {
@@ -130,23 +183,40 @@ int main()
             printf("\n  2. Mensalista");
             printf("\n  Numero: ");
             gets(choice);
-        } while(choice != "1" && choice != "2");
+        } while(choice != 1 && choice != 2 && choice != 0);
 
-        printf("\n\n  Digite a placa do carro: ");
-        gets(placa);
-
-        switch(choice)
+        do
         {
-            case "1":
-                //informar a vaga disponível mais próxima
-                //erro se o carro já estiver estacionado e perguntar denovo a placa
-                break;
-            case "2":
-                //informar a vaga associada ao carro
-                break;
-            DEFAULT:
-                continue;
-        }
+            system("cls");
+            printf("\n\n  Digite a placa do carro: ");
+            gets(placa);
+
+            switch(choice)
+            {
+                case "1":
+                    if(procuraPlaca(vaga, *andar, *fila, *vaga, placa) == 1)   //erro se o carro já estiver estacionado e perguntar denovo a placa
+                    {
+                        system("cls")
+                        printf("Carro ja se encontra estacionado, por favor digite uma placa válida.")
+                        system("pause");
+                    }
+                    else    //informar a vaga disponível mais próxima
+                    {
+                        coordsToCode(codigo, andar, fila, vaga);
+                        printf("\n\nVaga disponível mais próxima: %s", codigo);
+                        finish = 1;
+                    }
+                    break;
+                case "2":
+                    if(procuraPlaca(vaga, *andar, *fila, *vaga, placa) == 1)    //informar a vaga associada ao carro
+                    {
+                        coordsToCode(codigo, andar, fila, vaga);
+                        printf("Carro encontra-se na vaga: %s", codigo);
+                        finish = 1;
+                    }
+                    break;
+            }
+        } while (finish != 1)
     }
 
     escrita(vaga, ultimoAndar);     //escreve o banco de dados com as alterações
