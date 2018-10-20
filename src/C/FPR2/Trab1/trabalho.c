@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 typedef struct{
@@ -9,7 +10,7 @@ typedef struct{
 
 } estacionamento;
 
-void limpa(estacionamento matriz[10][10][8], int *ultimo_andar, int *ultima_fila, int *ultima_vaga)
+void limpa(estacionamento matriz[10][10][8])
 {
     int andar,fila,vaga;
     for(andar = 0 ; andar < 10 ; andar++)
@@ -18,17 +19,13 @@ void limpa(estacionamento matriz[10][10][8], int *ultimo_andar, int *ultima_fila
         {
             for(vaga = 0 ; vaga < 8 ; vaga++)
             {
-                strcpy(matriz[andar][fila][vaga].tipo, "0000000000");
-                strcpy(matriz[andar][fila][vaga].placa, "0000000");
-                strcpy(matriz[andar][fila][vaga].contato, "00000000000");
-                strcpy(matriz[andar][fila][vaga].data, "00000000");
+                strcpy(matriz[andar][fila][vaga].tipo, NULL);
+                strcpy(matriz[andar][fila][vaga].placa, NULL);
+                strcpy(matriz[andar][fila][vaga].contato, NULL);
+                strcpy(matriz[andar][fila][vaga].data, NULL);
             }
         }
     }
-    
-    *ultimo_andar = andar;
-    *ultima_fila = fila;
-    *ultima_vaga = vaga;
 }
 
 void codeToCoords(char codigo[5], int *l1, int *l2, int *l3)
@@ -128,7 +125,7 @@ void escrita(estacionamento matriz[10][10][8])
     fclose(arquivo);
 }
 
-int procuraPlaca(estacionamento matriz[10][10][8], int *l1, int *l2, int *l3, placa[8])
+int procuraPlaca(estacionamento matriz[10][10][8], int *l1, int *l2, int *l3, char placa[8])
 {
     int x,y,z;
     
@@ -147,7 +144,7 @@ int procuraPlaca(estacionamento matriz[10][10][8], int *l1, int *l2, int *l3, pl
                 }
                 else
                 {
-                    if()
+                    //if(strcmp(matriz[x][y][z].placa, NULL) == 0)
                 }
             }
         }
@@ -165,59 +162,73 @@ int main()
     int choice;
     char placa[8];
     char codigo[6];
-    int andar, fila, vaga;
-    andar = fila = vaga = -1;
+    int andar, fila, local;
+    andar = fila = local = -1;
     estacionamento vaga[10][10][8]; //vagas a serem utilizadas
     int ultimoAndar;                //ultimo andar utilizado
     int finish = 0;
-    limpa(vaga, &ultimoAndar, &ultimaFila, &ultimaVaga);
-    leitura(vaga, &ultimoAndar);    //lê o banco de dados
+    limpa(vaga);
+    leitura(vaga);    //lê o banco de dados
 
     while(choice != 0)
     {
-        do
-        {
-            system("cls");
-            printf("    Vaga de interesse.");
-            printf("\n  1. Rotativo");
-            printf("\n  2. Mensalista");
-            printf("\n  Numero: ");
-            gets(choice);
-        } while(choice != 1 && choice != 2 && choice != 0);
+        //MENU DE ENTRADA E SAÍDA
 
-        do
-        {
-            system("cls");
-            printf("\n\n  Digite a placa do carro: ");
-            gets(placa);
+        system("cls");
+        printf("    Cliente está entrando ou saindo com o carro?");
+        printf("\n  1. Entrando");
+        printf("\n  2. Saindo");
+        scanf("%d", &choice);            
 
-            switch(choice)
-            {
-                case "1":
-                    if(procuraPlaca(vaga, *andar, *fila, *vaga, placa) == 1)   //erro se o carro já estiver estacionado e perguntar denovo a placa
+        switch(choice)
+        {
+            case 1:
+
+                system("cls");
+                printf("    Vaga de interesse.");
+                printf("\n  1. Rotativo");
+                printf("\n  2. Mensalista");
+                printf("\n  Numero: ");
+                scanf("%d", &choice);
+
+                do
+                {
+                    system("cls");
+                    printf("\n\n  Digite a placa do carro: ");
+                    gets(placa);
+
+                    switch(choice)
                     {
-                        system("cls")
-                        printf("Carro ja se encontra estacionado, por favor digite uma placa válida.")
-                        system("pause");
+                        case 1:
+                            if(procuraPlaca(vaga, &andar, &fila, &local, placa) == 1)   //erro se o carro já estiver estacionado e perguntar denovo a placa
+                            {
+                                system("cls");
+                                printf("Carro ja se encontra estacionado, por favor digite uma placa valida.");
+                                system("pause");
+                            }
+                            else    //informar a vaga disponível mais próxima
+                            {
+                                coordsToCode(codigo, andar, fila, local);
+                                printf("\n\nVaga disponível mais próxima: %s", codigo);
+                                finish = 1;
+                            }
+                            break;
+                        case 2:
+                            if(procuraPlaca(vaga, &andar, &fila, &local, placa) == 1)    //informar a vaga associada ao carro
+                            {
+                                coordsToCode(codigo, andar, fila, local);
+                                printf("Carro encontra-se na vaga: %s", codigo);
+                                finish = 1;
+                            }
+                            break;
                     }
-                    else    //informar a vaga disponível mais próxima
-                    {
-                        coordsToCode(codigo, andar, fila, vaga);
-                        printf("\n\nVaga disponível mais próxima: %s", codigo);
-                        finish = 1;
-                    }
-                    break;
-                case "2":
-                    if(procuraPlaca(vaga, *andar, *fila, *vaga, placa) == 1)    //informar a vaga associada ao carro
-                    {
-                        coordsToCode(codigo, andar, fila, vaga);
-                        printf("Carro encontra-se na vaga: %s", codigo);
-                        finish = 1;
-                    }
-                    break;
-            }
-        } while (finish != 1)
+                } while (finish != 1);
+            break;
+
+            case 2:
+            break;
+        }
+
+        escrita(vaga);     //escreve o banco de dados com as alterações
     }
-
-    escrita(vaga, ultimoAndar);     //escreve o banco de dados com as alterações
 }
