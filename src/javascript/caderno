@@ -1,0 +1,10 @@
+<script src="js/arquivo.js">
+    DOM -> Document Object Model
+    alert(string); -> gera um popup com a escrita
+    console.log(string) -> manda uma mensagem no console
+    document -> variável que referencia o DOM HTML
+    DOM.querySelector(string) -> busca algo no DOM através de seletores CSS
+    var nome = qualquercoisa; -> declara e inicializa uma variável
+    .textContent -> irá pegar o conteúdo de texto do objeto utilizado para exibir ou alterar
+
+</script>

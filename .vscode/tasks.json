@@ -6,7 +6,7 @@
         {
             "label": "Build C",
             "type": "process",
-            "command": "gcc",
+            "command": "${workspaceFolder}/TinyCCompiler/tcc.exe",
             "args": [
                 "${file}",
                 "-o",
@@ -16,7 +16,17 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "problemMatcher": [],
+            "problemMatcher": []
+        },
+        {
+            "label": "Run C",
+            "type": "process",
+            "command": "./bin/${fileBasenameNoExtension}.exe",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
         },
         {
             "label": "Build JAVA",

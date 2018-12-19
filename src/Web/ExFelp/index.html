@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!-- Este exemplo foi criado por Sergio Zumpano Arnosti - Projeto Codifique 2014 -->
+<html>
+
+<head>
+    <meta coding="utf-8">
+    <!--meta charset="utf-8" -->
+    <title>Calcular Média</title>
+    <script type="text/javascript">
+        /* Esta função calcula a média ponderada entre duas provas */
+        function calculaMedia(nota1, nota2, peso1, peso2) {
+            var media = 0;
+            media = (parseFloat(nota1 * peso1) + parseFloat(nota2 * peso2)) /
+                (parseFloat(peso1) + parseFloat(peso2)); // conta da média
+            // usamos a função parseFloat() para o programa entender que estamos trabalhando com numeros
+            return media;
+        }
+        /* Esta função limpa o campo de texto quando o usuário clica nele (onFocus) */
+        function limpaCampo(campo) {
+            if (campo == 1) {
+                document.form.nota1.value = "";
+                // pega o elemento nota 1 pelo formulário
+            }
+            if (campo == 2) {
+                document.getElementById("nota2").value = "";
+                // podemos pegar o elemento pelo ID dele também
+            }
+            if (campo == 3) {
+                document.getElementById("peso1").value = "";
+            }
+            if (campo == 4) {
+                document.getElementById("peso2").value = "";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <center>
+        <p><strong> CALCULA MÉDIA</strong> </p></br></br>
+        <form name="form">
+            Nota 1: <input type="text" size="20" id="nota1" value="Digite nota 1" onFocus="limpaCampo(1);"> <br>
+            Nota 2: <input type="text" size="20" id="nota2" value="Digite nota 2" onFocus="limpaCampo(2);"> <br><br>
+            Peso Nota 1: <input type="text" size="20" id="peso1" value="Digite
+peso prova 1" onFocus="limpaCampo(3);">
+            <br>
+            Peso Nota 2: <input type="text" size="20" id="peso2" value="Digite
+peso prova 2" onFocus="limpaCampo(4);">
+            <br><br>
+            Media Final<br>
+            <input type="text" id="mf" size="20"><br><br>
+            <input type="button" value="Calcular" onClick="this.form.mf.value =
+calculaMedia(this.form.nota1.value,this.form.nota2.value,this.form.peso1.value,this.form.peso2.value);"><br>
+        </form>
+    </center>
+</body>
+
+</html>
