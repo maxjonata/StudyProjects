@@ -32,7 +32,8 @@
     ],
     "files.associations": {
         "string": "c",
-        "ratio": "c"
+        "ratio": "c",
+        "stdio.h": "c"
     },
     "git.ignoreLimitWarning": true,
 }
