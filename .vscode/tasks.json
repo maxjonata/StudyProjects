@@ -40,7 +40,21 @@
             "group": {
                 "kind": "build",
                 "isDefault": true
-            }
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Run JAVA",
+            "type": "shell",
+            "command": "java",
+            "args": [
+                "\"${workspaceFolder}\\bin\\${fileBasenameNoExtension}\""
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
         }
     ]
 }
