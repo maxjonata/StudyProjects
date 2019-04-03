@@ -18,7 +18,7 @@ public class Ponto {
 	}
 
 	public double distanciaAte(Ponto p2) {
-		return 0.0;
+		return Math.sqrt( Math.pow(p2.x - this.x, 2) + Math.pow(p2.y - this.y, 2) );
 	}
 
 }
