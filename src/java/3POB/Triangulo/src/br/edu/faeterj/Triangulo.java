@@ -8,6 +8,8 @@ public class Triangulo {
 		this.p1 = p1;
 		this.p2 = p2;
 		this.p3 = p3;
+
+		test_triangle_default();
 	}
 
 	public Ponto getP1() {
@@ -29,6 +31,20 @@ public class Triangulo {
 		// TODO Auto-generated method stub
 		
 		this.p3 = ponto;
+		test_triangle_default();
+	}
+
+	private void test_triangle_default()
+	{
+		double a = this.p1.distanciaAte(p2);
+		double b = this.p2.distanciaAte(p3);
+		double c = this.p3.distanciaAte(p1);
+		if( (Math.abs(b-c) <= a && a <= (b+c)) || (Math.abs(a - c) <= b && b <= (a + c)) || (Math.abs(a - b) <= c && c <= (a+b)) )
+		{
+			p1 = new Ponto( 0,0 );
+			p2 = new Ponto( 0,1 );
+			p3 = new Ponto( 1,0 );
+		}
 	}
 
 }
