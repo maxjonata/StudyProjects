@@ -10,7 +10,7 @@
             "args": [
                 "${file}",
                 "-o",
-                "bin/${fileBasenameNoExtension}.exe"
+                "C/bin/${fileBasenameNoExtension}.exe"
             ],
             "group": {
                 "kind": "build",
@@ -21,7 +21,7 @@
         {
             "label": "Run C",
             "type": "process",
-            "command": "./bin/${fileBasenameNoExtension}.exe",
+            "command": "./C/bin/${fileBasenameNoExtension}.exe",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -29,13 +29,13 @@
             "problemMatcher": []
         },
         {
-            "label": "Build JAVA",
+            "label": "(work in progress) Build JAVA",
             "type": "shell",
             "command": "javac",
             "args": [
                 "${file}",
                 "-d",
-                "${workspaceFolder}\\bin"
+                "${workspaceFolder}\\Java\\bin"
             ],
             "group": {
                 "kind": "build",
@@ -44,7 +44,7 @@
             "problemMatcher": []
         },
         {
-            "label": "Run JAVA",
+            "label": "(work in progress) Run JAVA",
             "type": "shell",
             "command": "java",
             "args": [

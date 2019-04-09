@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Teste",
+            "request": "launch",
+            "mainClass": "Teste",
+            "projectName": "Projetos_6915f5cf"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - CalcINSS",
+            "request": "launch",
+            "mainClass": "CalcINSS",
+            "projectName": "Projetos_6915f5cf"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Adivnum",
             "request": "launch",
             "mainClass": "java.Adivnum"
