@@ -9,7 +9,7 @@ public class Pessoa
 
     public double calcularPesoIdeal()
     {
-        return ((altura * altura) * 22.487654320987654320987654320988)
+        return ((altura * altura) * 22.487654320987654320987654320988);
     }
 
     public String mostrarSaudacao()
