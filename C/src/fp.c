@@ -3,46 +3,11 @@
 #include <string.h>
 
 void inserir(char nomeArquivo[], int numero);
-
-void organiza(char nomeArquivo[])
-{
-    int auxUltimo, iAtual, auxN, desorganizado;
-    FILE *arq, *auxArq;
-    iAtual = auxUltimo = 0;
-
-    do
-    {
-        arq=fopen(nomeArquivo,"r");
-
-        desorganizado = 0;
-        while(!feof(arq))
-        {
-            auxUltimo = iAtual;
-            fscanf(arq,"%d\n", &iAtual);
-
-            if(iAtual <= auxUltimo)
-            {
-                desorganizado = 1;
-
-                auxN = iAtual;
-                iAtual = auxUltimo;
-                auxUltimo = auxN;
-            }
-            
-            auxArq = fopen("auxiliar.txt", "a");
-            fprintf(auxArq, "%d\n", auxUltimo);
-            fclose(auxArq);
-        }
-        fclose(arq);
-        if(desorganizado)
-        {
-            remove(nomeArquivo);
-            rename("auxiliar.txt", nomeArquivo);
-        }
-    }
-    while(desorganizado);
-
-}
+int busca(char nomeArquivo[], int buscado);
+void alterar(char nomeArquivo[], int alterado, int alterador);
+int remover(char nomeArquivo[], int remover);
+void inserir(char nomeArquivo[], int numero);
+void ler(char nomeArquivo[]);
 
 int busca(char nomeArquivo[], int buscado) // Função de busca com os parametrôs do nome do arquivo que será passado pela main e o numero que o usuário deseja buscar.
 {
@@ -65,54 +30,24 @@ int busca(char nomeArquivo[], int buscado) // Função de busca com os parametr�
 
 void alterar(char nomeArquivo[], int alterado, int alterador) // Função de alterar um numero por outro com os parametrôs do nome do arquivo que será
 {															 // passado pela main, o numero que será trocado e o numero que irá assumir o lugar do outro.
-	FILE *arq, *aux;
-	arq=fopen(nomeArquivo,"r");
-	aux=fopen("auxiliar.txt","w");
-	
-	int numero, numeroAux, quant;
-	
-	quant=busca(nomeArquivo, alterador); // Verificando quantas vezes o numero já apareceu no arquivo.
-	
-	while(!feof(arq))
+	int i;
+	int qtdRemocoes = remover(nomeArquivo, alterado);
+	for(i = 0; i < qtdRemocoes; i++)
 	{
-		fscanf(arq,"%d\n", &numero);
-		
-		if((numero==alterado) && (quant<alterador)) // Verificando se o numero é o que deseja buscar e verificando se o limite já foi atingido.
-		{
-			fprintf(aux,"%d\n", alterador); // Trocando o numero pelo outro colocando-o no auxiliar.
-		}
-		else
-		{
-			fprintf(aux,"%d\n", numero); // Caso não seja o numero que será trocado, será colocado o numero normal.
-		}
+	    inserir(nomeArquivo, alterador);
 	}
-	
-	fclose(arq);
-	fclose(aux);
-	
-	arq=fopen(nomeArquivo,"w"); // Abrindo os arquivos para ser feito a troca dos numeros que estão no auxiliar para o arquivo principal.
-	aux=fopen("auxiliar.txt","r");
-	
-	while(!feof(aux)) // Estrutura de repetição para colocar de volta no arquivo principal os numeros que estão no auxiliar já feito a alteração.
-	{
-		fscanf(aux,"%d\n", &numeroAux);
-		fprintf(arq,"%d\n", numeroAux);
-	}
-	
-	fclose(aux);
-	fclose(arq);
-	remove("auxiliar.txt"); // Excluindo o arquivo auxiliar.
 }
 
 
-void remover(char nomeArquivo[], int remover) // Função de remover, com os parametrôs de nome do arquivo e o numero que será removido do arquivo.
+int remover(char nomeArquivo[], int remover) // Função de remover, com os parametrôs de nome do arquivo e o numero que será removido do arquivo.
 {
 	FILE *arq;
 	FILE *aux;
 	arq=fopen(nomeArquivo,"r");
 	aux=fopen("auxiliar.txt","w");
 	
-	int numero, numeroAux;
+	int numero, numeroAux, remocoes;
+	remocoes = 0;
 	
 	while(!feof(arq)) // Estrutura de repetição para impedir o numero que será removido de não ir para o arquivo auxiliar.
 	{
@@ -122,56 +57,64 @@ void remover(char nomeArquivo[], int remover) // Função de remover, com os par
 		{
 			fprintf(aux,"%d\n", numero);
 		}
-	}
-	
-	fclose(arq);
-	fclose(aux);
-	
-	arq=fopen(nomeArquivo,"w"); // Abrindo os arquivos para ser feito a troca dos numeros que estão no auxiliar para o arquivo principal.
-	aux=fopen("auxiliar.txt","r");
-	
-	while(!feof(aux)) // Estrutura de repetição para colocar de volta no arquivo principal os numeros que estão no auxiliar já feito a alteração.
-	{
-		fscanf(aux,"%d\n", &numeroAux);
-		fprintf(arq,"%d\n", numeroAux);
+		else
+		{
+		    remocoes++;
+		}
 	}
 	
 	fclose(aux);
 	fclose(arq);
-	remove("auxiliar.txt"); // Excluindo o arquivo auxiliar.
+	remove(nomeArquivo); // Excluindo o arquivo auxiliar.
+	rename("auxiliar.txt", nomeArquivo);
+
+	printf("%d", remocoes);
+	
+	return remocoes;
 }
 
 void inserir(char nomeArquivo[], int numero) // Função de inserir um numero no arquivo, com os parametros do char com o nome do arquivo e o numero que será inserido.
 {
 	FILE *arq, *arqAux;
+	int quant, numeroLocal, ultimoNumero;
 	char nomeArquivoAuxiliar[] = "auxiliar.txt";
 	if( !(arq = fopen(nomeArquivo,"r")) )
 	{
 		arq = fopen(nomeArquivo, "w");
+		fprintf(arq, "%d\n", numero);
 		fclose(arq);
 	}
-	arqAux=fopen(nomeArquivoAuxiliar, "a");
-	
-	int quant, numeroLocal;
-	numeroLocal = -1;
-	
-	quant=busca(nomeArquivo, numero);
-	
-	if(quant<numero)
-	{
-		while(!feof(arq) || numeroLocal > numero)
+	else
+	{	
+		fclose(arq);
+		quant=busca(nomeArquivo, numero);
+
+		if(quant<numero)
 		{
-			if(numeroLocal > (-1)) fprintf(arqAux, "\n");
-			fscanf(arq, "%d\n", &numeroLocal);
-			if(numeroLocal > numero) fprintf(arqAux, "%d\n%d", numero, numeroLocal);
-			else fprintf(arqAux, "%d", numeroLocal);
+			arq = fopen(nomeArquivo,"r");
+			arqAux = fopen(nomeArquivoAuxiliar, "a");
+			numeroLocal = -1;
+			ultimoNumero = -2;
+			
+			while(!feof(arq))
+			{
+				printf("Hey!");
+				fscanf(arq, "%d\n", &numeroLocal);
+				if((numero > ultimoNumero) && (numero <= numeroLocal))
+				{
+					fprintf(arqAux, "%d\n", numero);
+				}
+				fprintf(arqAux, "%d\n", numeroLocal);
+
+				ultimoNumero = numeroLocal;
+			}
+
+			fclose(arq);
+			fclose(arqAux);
+			printf("\n\n\n\n*%d*\n\n\n\n", remove(nomeArquivo));
+			printf("\n\n\n\n*%d*\n\n\n\n", rename(nomeArquivoAuxiliar, nomeArquivo));
 		}
 	}
-	
-	fclose(arq);
-	fclose(arqAux);
-	remove(nomeArquivo);
-	rename(nomeArquivoAuxiliar, nomeArquivo);
 }
 
 void ler(char nomeArquivo[]) // Função de ler com o parametro do nome do Arquivo que será passado pela main.
@@ -236,7 +179,7 @@ int main()
 				if(opcao==3)
 				{
 					printf("Inserir numero que deseja remover:\n");
-					scanf("%d", &numero);
+					scanf("%d", &removido);
 					remover(arquivoTxt, removido);
 				}
 				else
